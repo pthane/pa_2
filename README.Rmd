@@ -1,0 +1,34 @@
+library(tidyverse)
+
+{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+Dataframe_1 = read_csv("data/data.csv")
+
+{r}
+Dataframe_2 = separate(data = df1, col = info, into = c("verbo", "acentuacion"), sep = "_") 
+Dataframe_2
+
+{r}
+Dataframe_2 %>%
+group_by(acentuacion) %>%
+summarise(promedio_duracion = mean(durationV), promedio_f0 = mean(f0), promedio_intensidad = mean(int)) 
+
+{r}
+id1 = 1:nrow(Dataframe_2)
+ggplot(data = Dataframe_2, aes(x = acentuacion ,y=f0)) + # data, variables, tipo de grafico 
+  geom_line() +
+  geom_point()
+
+{r}
+id1 = 1:nrow(Dataframe_2)
+ggplot(data = Dataframe_2, aes(x = acentuacion ,y=durationV)) + # data, variables, tipo de grafico
+  geom_line() +
+  geom_point()  
+
+{r}
+id1 = 1:nrow(Dataframe_2)
+ggplot(data = Dataframe_2, aes(x = acentuacion ,y=int)) + # data, variables, tipo de grafico
+  geom_line() +
+  geom_point()  
+
+  
